@@ -21,7 +21,8 @@ namespace LAB1
         public override void PrintInfo()
         {
             base.PrintInfo();
-            Console.WriteLine($"Passengers: {{Passangers}");
+            Console.Write($" Passengers: {Passengers}");
+            Console.WriteLine("");
         }
         public void GetPassengers()
         {
@@ -47,9 +48,9 @@ namespace LAB1
         public override void PrintInfo()
         {
             base.PrintInfo();
-            Console.WriteLine($"Gears: {{Gears}");
+            Console.Write($" Gears: {Gears}");
+            Console.WriteLine("");
         }
-
 
         public void GetGears()
         {

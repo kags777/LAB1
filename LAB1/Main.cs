@@ -1,45 +1,51 @@
 ﻿using LAB1;
-class Main
+class App
 {
-    int a = 0;//вспомогательная переменная
-    int number; // еще одна вспомогательная переменная
+    static void Main()
+    {
 
-do{
-    do{
-        Console.WriteLine("Select the desired operation");
-        Console.WriteLine("\nMenu:\n");
-        Console.WriteLine("1. Add vehicle\n");
-        Console.WriteLine("2. Print vehicles\n");
-        Console.WriteLine("3. Exit\n");
-        string choice = Console.ReadLine();
+        int a = 0;//вспомогательная переменная
+        int number; // еще одна вспомогательная переменная
+        int Choice;
 
-        if (int.TryParse(choice, out number))
+        List<BaseVehicle> vehicles = new List<BaseVehicle>();
+        Manager manager = new Manager();
+
+        do
         {
-            a = 1;
-        }
+            do
+            {
+                Console.WriteLine("\nSelect the desired operation");
+                Console.WriteLine("\nMenu:\n");
+                Console.WriteLine("1. Add vehicle\n");
+                Console.WriteLine("2. Print vehicles\n");
+                Console.WriteLine("3. Exit\n");
+                string choice = Console.ReadLine();
+                Manager.TryParseNumber(choice, out Choice);
 
-        else
-{
-    Console.WriteLine("Ошибка: это не число!");
+
+            } while (false);
+
+
+            switch (Choice)
+            {
+                case 1:
+                    manager.AddObject(vehicles);
+                    break;
+                case 2:
+                    manager.printVehicles(vehicles);
+                    break;
+                case 3:
+                    Console.WriteLine("До свидания!");
+                    Environment.Exit(0);
+                    break;
+                default:
+                    Console.WriteLine("Invalid choice.\n");
+                    break;
+            }
+        } while (Choice != 3);
+    }
 }
-    } while (a != 1) ;
 
-
-switch (number)
-{
-    case 1:
-        addObject(vehicles);
-        break;
-    case 2:
-        printVehicles(vehicles);
-        break;
-    case 3:
-        return 0;
-    default:
-        Console.WriteLine("Invalid choice.\n");
-        break;
-}
-
-} while (true) ;
 
 

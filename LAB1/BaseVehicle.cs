@@ -26,7 +26,8 @@ namespace LAB1
         public virtual void PrintInfo()
         {
             // Реализация виртуальной функции печати информации об объекте класса BaseVehicle
-            Console.WriteLine($"Brand: {Brand}, Model: {Model}, Year: {Year}, Price: {Price}");
+            
+            Console.Write($"Brand: {Brand}, Model: {Model}, Year: {Year}, Price: {Price}");
         }
 
         // Функции для получения значений характеристик объекта

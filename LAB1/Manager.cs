@@ -1,6 +1,7 @@
 ﻿using LAB1;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,88 +10,79 @@ namespace LAB1
 {
     class Manager
     {
-        int Year,Price;
-        int a = 0;
-        public void addObject(std::list<std::unique_ptr<BaseVehicle>>& vehicles)
+        int Year, Price, a = 0, Choice;
+        bool invalidArg;
+
+        public void AddObject(List<BaseVehicle> vehicles)
         {
-            Console.WriteLine("Choose type of vehicle to add:\n");
-            Console.WriteLine("1. BaseVehicle\n");
-            Console.WriteLine("2. Car\n");
-            Console.WriteLine("3. Bicycle\n");
-            string choice = Console.ReadLine();
+
+            do
+            {
+                invalidArg = false;
+                Console.WriteLine("Choose type of vehicle to add:\n");
+                Console.WriteLine("1. BaseVehicle\n");
+                Console.WriteLine("2. Car\n");
+                Console.WriteLine("3. Bicycle\n");
+
+                string choice = Console.ReadLine();
+                invalidArg = TryParseNumber(choice, out Choice);
+            } while (invalidArg != true);
 
             Console.WriteLine("Enter brand: ");
             string brand = Console.ReadLine();
 
             Console.WriteLine("Enter model: ");
             string model = Console.ReadLine();
-         do
-            { 
-            Console.WriteLine("Enter year: ");
-            string year = Console.ReadLine();
 
-            if (int.TryParse(year, out Year))
+            do
             {
-                a = 1;
-            }
+                invalidArg = false;
+                Console.WriteLine("Enter year: ");
+                string year = Console.ReadLine();
+                invalidArg = TryParseNumber(year, out Year);
+            } while (invalidArg != true);
 
-            else
+            do
             {
-                Console.WriteLine("Ошибка: это не число!");
-            }
-        } while (a != 1);
+                invalidArg = false;
+                Console.WriteLine("Enter price: ");
+                string price = Console.ReadLine();
+                invalidArg = TryParseNumber(price, out Price);
+            } while (invalidArg != true);
 
-            do { 
-            Console.WriteLine("Enter price: ");
-            string price = Console.ReadLine();
-            if (int.TryParse(price, out Price))
-            {
-                a = 1;
-            }
-
-            else
-            {
-                Console.WriteLine("Ошибка: это не число!");
-            }
-        } while (a != 1);
-
-
-
-
-            switch (choice)
+            switch (Choice)
             {
                 case 1:
-                    vehicles.push_back(std::make_unique<BaseVehicle>(brand, model, Year, Price));
+                    vehicles.Add(new BaseVehicle(brand, model, Year, Price));
                     break;
+
                 case 2:
                     {
-
                         int Passengers;
-                        do { 
-                        Console.WriteLine( "Enter number of passengers: ");
-                        string passengers = Console.ReadLine();
-                        
-                        if (int.TryParse(passengers, out Passengers))
+                        do
                         {
-                            a = 1;
-                        }
+                            invalidArg = false;
+                            Console.WriteLine("Enter number of passengers: ");
+                            string passengers = Console.ReadLine();
 
-                        else
-                        {
-                            Console.WriteLine("Ошибка: это не число!");
-                        }
-                    } while (a != 1);
+                            invalidArg = TryParseNumber(passengers, out Passengers);
+                        } while (invalidArg != true);
 
-
-                    vehicles.push_back(std::make_unique<Car>(brand, model, year, price, passengers));
+                        vehicles.Add(new Car(brand, model, Year, Price, Passengers));
                         break;
                     }
+
                 case 3:
                     {
                         int Gears;
-                        Console.WriteLine( "Enter number of gears: ");
-                        string gears = Console.ReadLine();
-                        vehicles.push_back(std::make_unique<Bicycle>(brand, model, year, price, gears));
+                        do
+                        {
+                            invalidArg = false;
+                            Console.WriteLine("Enter number of gears: ");
+                            string gears = Console.ReadLine();
+                            invalidArg = TryParseNumber(gears, out Gears);
+                        } while (invalidArg != true);
+                        vehicles.Add(new Bicycle(brand, model, Year, Price, Gears));
                         break;
                     }
                 default:
@@ -98,59 +90,26 @@ namespace LAB1
                     break;
             }
         }
-
-        void printVehicles(const std::list<std::unique_ptr<BaseVehicle>>& vehicles)
-{
-    for (auto&vehicle : vehicles) {
-        vehicle->printInfo();
-    }
-}
-
-
-std::list<std::unique_ptr<BaseVehicle>> vehicles;
-    }
-}
-
-
- int a = 0;//вспомогательная переменная
-int number; // еще одна вспомогательная переменная
-
-do
-{
-    do
-    {
-        Console.WriteLine("Select the desired operation");
-        Console.WriteLine("\nMenu:\n");
-        Console.WriteLine("1. Add vehicle\n");
-        Console.WriteLine("2. Print vehicles\n");
-        Console.WriteLine("3. Exit\n");
-        string choice = Console.ReadLine();
-
-        if (int.TryParse(choice, out number))
+        public void printVehicles(List<BaseVehicle> vehicles)
         {
-            a = 1;
+            foreach (var vehicle in vehicles)
+            {
+                vehicle.PrintInfo();
+            }
+
+        }
+        public static bool TryParseNumber(string input, out int result)
+        {
+            if (int.TryParse(input, out result))
+            {
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("Ошибка: это не число!");
+                return false;
+            }
         }
 
-        else
-        {
-            Console.WriteLine("Ошибка: это не число!");
-        }
-    } while (a != 1);
-
-
-    switch (number)
-    {
-        case 1:
-            addObject(vehicles);
-            break;
-        case 2:
-            printVehicles(vehicles);
-            break;
-        case 3:
-            return 0;
-        default:
-            Console.WriteLine("Invalid choice.\n");
-            break;
     }
-
-} while (true);
+}
