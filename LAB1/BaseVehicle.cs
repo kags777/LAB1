@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LAB1
 {
-    class BaseVehicle
+    public class BaseVehicle
     {
         public string Brand { get; set; }
         public string Model { get; set; }
@@ -25,8 +25,6 @@ namespace LAB1
         // Виртуальная функция для вывода (печати) сведений об объекте класса
         public virtual void PrintInfo()
         {
-            // Реализация виртуальной функции печати информации об объекте класса BaseVehicle
-            
             Console.Write($"Brand: {Brand}, Model: {Model}, Year: {Year}, Price: {Price}");
         }
 

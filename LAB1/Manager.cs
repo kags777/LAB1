@@ -10,8 +10,8 @@ namespace LAB1
 {
     class Manager
     {
-        int Year, Price, a = 0, Choice;
-        bool invalidArg;
+        int Year, Price, Choice;//год,цена, номер выбранного действия
+        bool invalidArg;//для проверки введеного значения
 
         public void AddObject(List<BaseVehicle> vehicles)
         {

@@ -6,7 +6,7 @@ class App
 
         int a = 0;//вспомогательная переменная
         int number; // еще одна вспомогательная переменная
-        int Choice;
+        int Choice; // для выбора действия
 
         List<BaseVehicle> vehicles = new List<BaseVehicle>();
         Manager manager = new Manager();
