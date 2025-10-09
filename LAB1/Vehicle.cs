@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LAB1
 {
-    class Car : BaseVehicle
+    public class Car : BaseVehicle
     {
         public int Passengers { get; set; }
         public Car(string brand = "", string model = "", int year = 0, double price = 0.0, int passengers = 0)
@@ -23,6 +23,7 @@ namespace LAB1
             base.PrintInfo();
             Console.Write($" Passengers: {Passengers}");
             Console.WriteLine("");
+           
         }
         public void GetPassengers()
         {
@@ -50,6 +51,7 @@ namespace LAB1
             base.PrintInfo();
             Console.Write($" Gears: {Gears}");
             Console.WriteLine("");
+           
         }
 
         public void GetGears()
