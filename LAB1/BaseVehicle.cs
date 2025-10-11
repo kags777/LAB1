@@ -13,6 +13,8 @@ namespace LAB1
         public int Year { get; set; }
         public double Price { get; set; }
 
+        public BaseVehicle() { }
+
         // Конструктор с параметрами и значениями по умолчанию
         public BaseVehicle(string brand = "", string model = "", int year = 0, double price = 0.0)
         {
@@ -22,29 +24,34 @@ namespace LAB1
             Price = price;
         }
 
+        public virtual string GetInfo()
+        {
+            return $"Brand: {Brand}, Model: {Model}, Year: {Year}, Price: {Price}";
+        }
+
         // Виртуальная функция для вывода (печати) сведений об объекте класса
         public virtual void PrintInfo()
         {
-            Console.Write($"Brand: {Brand}, Model: {Model}, Year: {Year}, Price: {Price}");
+            Console.WriteLine(GetInfo());
         }
 
         // Функции для получения значений характеристик объекта
-        public void GetBrand()
+        public string GetBrand()
         {
-            Console.WriteLine($"{Brand}");
+            return Brand;
         }
-        public void GetModel()
+        public string GetModel()
         {
-            Console.WriteLine($"{Model}");
+            return Model;
         }
 
-        public void GetYear()
+        public int GetYear()
         {
-            Console.WriteLine($"{Year}");
+            return Year;
         }
-        public void GetPrice()
+        public double GetPrice()
         {
-            Console.WriteLine($"{Price}");
+            return Price;
         }
 
         // Функции для изменения значений характеристик объекта

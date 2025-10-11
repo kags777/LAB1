@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LAB1
 {
-    class Manager
+    public class Manager
     {
         int Year, Price, Choice;//год,цена, номер выбранного действия
         bool invalidArg;//для проверки введеного значения
