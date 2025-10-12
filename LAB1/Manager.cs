@@ -100,7 +100,7 @@ namespace LAB1
         }
         public static bool TryParseNumber(string input, out int result)
         {
-            if (int.TryParse(input, out result))
+            if (int.TryParse(input, out result) && result > 0)
             {
                 return true;
             }
